@@ -15,8 +15,11 @@ import (
 	"sync"
 )
 
+<<<<<<< HEAD
 //仿nginx配置文件格式, key=value, 注释从#开始至一行结束
 
+=======
+>>>>>>> 6fea9266a6ddac9d708570c3d42e318ebed3c7b9
 type TextConfig struct {
 	szFile  string
 	content []byte
@@ -189,6 +192,18 @@ func (this *TextConfig) GetConfString(key string) string {
 	return ""
 }
 
+<<<<<<< HEAD
+=======
+func (this *TextConfig) TryGetConfString(key string) string {
+	this.lock.Lock()
+	defer this.lock.Unlock()
+	if s, ok := this.mp[key]; ok {
+		return s
+	}
+	return ""
+}
+
+>>>>>>> 6fea9266a6ddac9d708570c3d42e318ebed3c7b9
 func (this *TextConfig) SetConfString(key string, value string) {
 	this.lock.Lock()
 	defer this.lock.Unlock()
@@ -219,6 +234,21 @@ func (this *TextConfig) GetConfInt(key string) int64 {
 	return 0
 }
 
+<<<<<<< HEAD
+=======
+func (this *TextConfig) GetConfFloat64(key string) float64 {
+	this.lock.Lock()
+	defer this.lock.Unlock()
+	if s, ok := this.mp[key]; ok {
+		i, _ := strconv.ParseFloat(s, 64)
+		return i
+	}
+
+	panic("配置项读取失败")
+	return 0
+}
+
+>>>>>>> 6fea9266a6ddac9d708570c3d42e318ebed3c7b9
 func (this *TextConfig) SetConfInt(key string, value int64) {
 	this.lock.Lock()
 	defer this.lock.Unlock()
